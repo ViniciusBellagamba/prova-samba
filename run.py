@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
+from utils.endpoints_exceptions import endpoint_ex, body_validation
 
 db_user = os.environ.get("DB_USER", "").strip()
 db_pass = os.environ.get("DB_PASS", "").strip()
@@ -34,7 +35,6 @@ class Video(db.Model):
 
 def to_dict(self):
     dic = {
-
         'id': self.id,
         'name': self.name,
         'url': self.url,
@@ -52,6 +52,7 @@ def create_video_table():
 @app.route('/medias', methods=['POST', 'OPTIONS'])
 def create():
     body = request.json
+    body_validation(body)
     video = Video(name=body['name'], url=body['url'], duration=body['duration'], deleted=body['deleted'])
     db.session.add(video)
     db.session.commit()
@@ -71,7 +72,9 @@ def get_list():
 @app.route('/medias/<video_id>', methods=['GET', 'OPTIONS'])
 def get(video_id):
     video = Video.query.filter_by(id=video_id).first()
-    return jsonify(to_dict(video)), 200
+    if video is not None:
+        return jsonify(to_dict(video)), 200
+    raise endpoint_ex(404, "VIDEO_NOT_FOUND")
 
 
 @app.route('/medias/<video_id>', methods=['DELETE', 'OPTIONS'])
@@ -81,11 +84,13 @@ def delete(video_id):
         db.session.delete(video)
         db.session.commit()
         return jsonify(to_dict(video)), 200
+    raise endpoint_ex(404, "VIDEO_NOT_FOUND")
 
 
 @app.route('/medias/<video_id>', methods=['PUT', 'OPTIONS'])
 def update(video_id):
     body = request.json
+    body_validation(body)
     video = Video.query.filter_by(id=video_id).first()
     if video is not None:
         video.name = body['name']
@@ -94,6 +99,12 @@ def update(video_id):
         video.deleted = body['deleted']
         db.session.commit()
         return jsonify(to_dict(video)), 200
+    raise endpoint_ex(404, "VIDEO_NOT_FOUND")
+
+
+@app.route('/')
+def hello():
+    return "Prova para admissão de desenvolvedor júnior da samba-tech realizada por Vinicius Bellagamba."
 
 
 create_video_table()
