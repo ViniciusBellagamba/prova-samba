@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "8f7dd4a1-7bd7-4ed5-a257-89fbb3d69fbe",
+		"name": "prova_samba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Meme - WoW / UAU Eddy Wally Chroma Key - Editions\",\n\t\"url\": \"https://www.youtube.com/watch?v=zqTwOoElxBA\",\n\t\"duration\": 10.5,\n    \"deleted\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/medias",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"medias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get video list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/medias",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"medias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get video",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/medias/<video_id>",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"medias",
+						"<video_id>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put video",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Meme - WoW / UAU Eddy Wally Chroma Key - Editions\",\n\t\"url\": \"https://www.youtube.com/watch?v=zqTwOoElxBA\",\n\t\"duration\": 10.0,\n    \"deleted\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/medias/<video_id>",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"medias",
+						"<video_id>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete video",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/medias/<video_id>",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"medias",
+						"<video_id>"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
