@@ -7,6 +7,8 @@ def endpoint_ex(code, msg):
 
 def body_validation(body):
     required_keys = ['name', 'url', 'duration', 'deleted']
+    if body is None:
+        raise endpoint_ex(400, f"BAD REQUEST: The request body is empty")
     for key in required_keys:
         if key not in body.keys():
             raise endpoint_ex(400, f"BAD REQUEST: Missing key: '{key}' on request body")

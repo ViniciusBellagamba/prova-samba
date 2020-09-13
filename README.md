@@ -15,12 +15,23 @@ pip install -r requirements.txt
 Para execução da API, as seguintes variáveis de ambiente devem ser configuradas:
 ```
 DB_USER --> user do banco;
-DB_PASS --> senha do banco ;
+DB_PASS --> senha do banco;
 DB_HOST --> host do banco;
-DATABASE --> nome schema;
+DATABASE --> nome do schema.
 ```
 
 ## Execução 
 ```
 python run.py
 ```
+
+
+## Execução de testes unitarios
+```
+python unit_test/test.py
+```
+
+
+## Link Swagger
+
+https://app.swaggerhub.com/apis/ViniciusBellagamba/prova-samba/1.0#/
